@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalController, NavController} from 'ionic-angular';
 import {AddPlacePage} from "../add-place/add-place";
 import {Place} from "../../models/place";
@@ -9,7 +9,7 @@ import {PlacePage} from "../place/place";
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
   addPlacePage = AddPlacePage;
   places: Place[] = [];
 
@@ -17,6 +17,15 @@ export class HomePage {
               private placesService: PlacesService,
               private modalCtrl: ModalController) {
 
+  }
+
+  ngOnInit() {
+    this.placesService.fetchPlaces()
+      .then(
+        (places: Place[]) => {
+          this.places = places;     // make fetchPlaces() as a promise to make sure the data and image will be loaded after opening the home page
+        }
+      );
   }
 
   ionVIewWillEnter() {

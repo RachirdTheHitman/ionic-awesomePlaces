@@ -14,6 +14,7 @@ import {AddPlacePage} from "../pages/add-place/add-place";
 import {PlacePage} from "../pages/place/place";
 import {SetLocationPage} from "../pages/set-location/set-location";
 import {PlacesService} from "../services/places";
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {PlacesService} from "../services/places";
     Camera,
     PlacesService,
     File,
+    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
